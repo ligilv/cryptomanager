@@ -1,0 +1,3 @@
+configure vector icons    done
+create custom icon component done
+create flatlist design for home
