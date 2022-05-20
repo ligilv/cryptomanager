@@ -1,15 +1,15 @@
 import {View, Text, TextInput} from 'react-native';
 import React from 'react';
 
-const CustomInput = ({...rest}) => {
+const CustomInput = ({style, ...rest}) => {
   return (
     <View style={{padding: 20}}>
       <TextInput
-        style={{
+        style={[{
           backgroundColor: 'white',
           borderRadius: 10,
           paddingHorizontal: 5,
-        }}
+        },style]}
         {...rest}
       />
     </View>

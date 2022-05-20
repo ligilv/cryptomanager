@@ -5,7 +5,9 @@ import {fetchCoinDetails} from '../../services/getCoinData';
 import Graph from './graph';
 import DateBar from './dateBar';
 import {  } from 'react-native-safe-area-context';
-const CoinDetail = ({route, navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+const CoinDetail = ({route}) => {
+  const navigation=useNavigation()
   const {name, rank, thumbImage, coinID, changePercent, currentPrice, symbol} =
     route.params;
   console.log(symbol);
@@ -23,7 +25,7 @@ const CoinDetail = ({route, navigation}) => {
     fetchCoin();
   }, []);
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView  style={{flex: 1, backgroundColor: '#152029'}}>
       <CustomHeader
         navigation={navigation}
         coinName={symbol}

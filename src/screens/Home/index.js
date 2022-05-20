@@ -12,7 +12,9 @@ import {getAllCoin} from '../../services/getAllCoins';
 import Icon from '../../components/Icon';
 import RenderList from './renderList';
 import Header from './Header';
-const Home = ({navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+const Home = () => {
+  const navigation=useNavigation()
   const [data, setData] = useState({});
   const [refresh, setRefresh] = useState(false);
   const STYLES = ['default', 'dark-content', 'light-content'];
@@ -36,8 +38,8 @@ const Home = ({navigation}) => {
     // navigation.navigate('');
   }, []);
   return (
-    <SafeAreaView>
-      <View style={{backgroundColor: '#1B1A17', paddingBottom: 90}}>
+    <SafeAreaView  style={{flex: 1, backgroundColor: '#152029',}}>
+      <View style={{backgroundColor: '#1B1A17', flex:1}}>
         <Header />
         <FlatList
           onRefresh={getAllcoins}
@@ -45,8 +47,8 @@ const Home = ({navigation}) => {
           data={data}
           // onRefresh={() => console.log('refre')}
           keyExtractor={item => item.market_cap_rank}
-          renderItem={({item}) => {
-            return <RenderList item={item} navigation={navigation} />;
+          renderItem={({item}) => { 
+            return <RenderList item={item}/>;
           }}
         />
       </View>

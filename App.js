@@ -24,7 +24,8 @@ import RootNavigator from './src/navigation';
 const App = () => {
   return (
     <NavigationContainer>
-      <RootNavigator />
+    <RootNavigator />
+    <FlashMessage position="top" /> 
     </NavigationContainer>
   );
 };

@@ -1,8 +1,9 @@
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import Icon from '../../components/Icon';
-
-const RenderList = ({navigation, item}, props) => {
+import { useNavigation } from '@react-navigation/native';
+const RenderList = ({ item}, props) => {
+  const navigation=useNavigation()
   return (
     <View
       style={{
@@ -50,9 +51,9 @@ const RenderList = ({navigation, item}, props) => {
               style={{
                 backgroundColor: 'grey',
                 marginTop: 5,
-                width: 30,
+                // width: 30,
                 borderRadius: 5,
-                //   paddingHorizontal: ,
+                  paddingHorizontal: 5,
               }}>
               <Text
                 style={{

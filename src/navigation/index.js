@@ -16,11 +16,14 @@ const RootNavigator = () => {
           headerShown: false,
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
-        }}>
+         
+        }}
+       >
         <Tab.Screen
           name="Hometab"
           component={HomeStack}
-          options={{tabBarBadge: 3}}
+          options={{tabBarBadge: 3, 
+          }}
         />
         <Tab.Screen name="FavoriteStack" component={FavoriteStack} />
       </Tab.Navigator>

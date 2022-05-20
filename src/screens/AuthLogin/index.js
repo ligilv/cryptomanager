@@ -4,13 +4,14 @@ import {
   View,
   SafeAreaView,
   Image,
-  TouchableOpacity,
+  TouchableOpacity,ToastAndroid
 } from 'react-native';
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import {showMessage, hideMessage} from 'react-native-flash-message';
-
-const AuthLogin = ({navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+const AuthLogin = () => {
+  const navigation=useNavigation()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -29,11 +30,13 @@ const AuthLogin = ({navigation}) => {
         value={username}
         placeholder="Username"
         onChangeText={value => setUsername(value)}
+style={{height:35}}
       />
       <CustomInput
         value={password}
         placeholder="Password"
         onChangeText={value => setPassword(value)}
+        style={{height:35}}
       />
       <View style={{alignItems: 'center'}}>
         <TouchableOpacity
@@ -68,10 +71,10 @@ const AuthLogin = ({navigation}) => {
       <TouchableOpacity
         style={{marginTop: 15}}
         onPress={() => {
-          showMessage({
-            message: 'Simple message',
-            type: 'info',
-          });
+           showMessage({
+            message: 'Logged in',
+            type: 'success',
+          } )
           navigation.replace('HomeNav');
         }}>
         <Text

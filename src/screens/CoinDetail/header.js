@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Icon from '../../components/Icon';
 // import {} from 'react-native-gesture-handler';
 
 const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
   console.log(coinName);
+  // const starColor=useRef('grey')
+  const [starColor, setStarColor]=useState('grey')
   return (
     <View
       style={{
@@ -43,14 +45,16 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
         <View
           style={{
             backgroundColor: 'grey',
-            marginTop: 5,
-            width: 40,
+            // marginTop: 5,
+            // width: 40,
+            paddingHorizontal:3,
             borderRadius: 5,
+           paddingVertical:3
           }}>
           <Text
             style={{
               fontSize: 15,
-              fontWeight: '600',
+              fontWeight: '400',
               textAlign: 'center',
               color: 'white',
               //   allowFontScaling: true,
@@ -59,8 +63,8 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity>
-        <Icon from={'fontAwesome'} name="star" color="yellow" size={25} />
+      <TouchableOpacity onPress={()=>starColor=='grey'?setStarColor('gold'):setStarColor('grey')}>
+        <Icon from={'fontAwesome'} name="star" color={starColor} size={25} />
       </TouchableOpacity>
     </View>
   );
