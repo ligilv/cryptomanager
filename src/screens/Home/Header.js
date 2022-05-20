@@ -29,7 +29,7 @@ const Header = () => {
               uri: thumbImage,
             }}
           /> */}
-        <Text style={styles.headerText}>Coin Stat</Text>
+        <Text style={styles.headerText}>Coin Stats</Text>
       </View>
     </View>
   );
