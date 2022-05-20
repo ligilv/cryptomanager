@@ -13,19 +13,41 @@ const RootNavigator = () => {
     return (
       <Tab.Navigator
         screenOptions={{
+          tabBarShowLabel:false, 
           headerShown: false,
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
+          tabBarStyle:{
+            backgroundColor:'#1B1A17'
+          }
          
         }}
        >
         <Tab.Screen
+        
           name="Hometab"
           component={HomeStack}
-          options={{tabBarBadge: 3, 
+          options={{tabBarBadge: 1,
+            tabBarIcon:({focused})=>{
+              return  <Icon
+              from={'ionicons'}
+              name="home"
+              color={focused?'orange':"silver"}
+              size={30}
+            />
+            }
           }}
         />
-        <Tab.Screen name="FavoriteStack" component={FavoriteStack} />
+        <Tab.Screen name="FavoriteStack" component={FavoriteStack} options={{tabBarBadge: 1, 
+          tabBarIcon:({focused})=>{
+            return  <Icon
+            from={'ionicons'}
+            name="star"
+            color={focused?'orange':"grey"}
+            size={30}
+          />
+          }
+        }}/>
       </Tab.Navigator>
     );
   };
