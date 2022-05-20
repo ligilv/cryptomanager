@@ -30,10 +30,7 @@ const Home = ({navigation}) => {
   }, []);
   return (
     <SafeAreaView>
-      <StatusBar animated={true}
-        backgroundColor="#61dafb"
-        barStyle={statusBarStyle}
-       />
+      
 
     <View style={{backgroundColor: '#1B1A17', paddingBottom: 50}}>
       <Header />

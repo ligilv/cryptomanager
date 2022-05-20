@@ -23,7 +23,7 @@ const CoinDetail = ({route, navigation}) => {
     fetchCoin();
   }, []);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <CustomHeader
         navigation={navigation}
         coinName={symbol}
