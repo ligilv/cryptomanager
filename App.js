@@ -8,7 +8,8 @@
 
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {useSharedValue} from 'react-native-reanimated';
+import FlashMessage from 'react-native-flash-message';
+
 import {
   SafeAreaView,
   ScrollView,
