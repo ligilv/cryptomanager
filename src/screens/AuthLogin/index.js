@@ -72,7 +72,7 @@ style={{height:35}}
         style={{marginTop: 15}}
         onPress={() => {
            showMessage({
-            message: 'Logged in',
+            message: 'Logged in successfully',
             type: 'success',
           } )
           navigation.replace('HomeNav');
