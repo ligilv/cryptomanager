@@ -11,7 +11,6 @@ const DateBar = ({selectFun}) => {
   ]);
 
   const selected = toChange => {
-    console.log(toChange);
     selectFun(toChange);
 
     // let updatedArr = duration.map(item => {

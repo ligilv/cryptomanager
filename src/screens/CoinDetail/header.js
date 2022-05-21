@@ -9,11 +9,29 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import Icon from '../../components/Icon';
 // import {} from 'react-native-gesture-handler';
-
-const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
-  console.log(coinName);
+import {showMessage, hideMessage} from 'react-native-flash-message';
+const CustomHeader = ({route, navigation, coinName, rank, thumbImage, changeColorPoint}) => {
   // const starColor=useRef('grey')
   const [starColor, setStarColor]=useState('grey')
+  const addToFav=()=>{
+    if (  starColor=='grey') {
+      setStarColor('gold') 
+      changeColorPoint('green')
+      showMessage({
+        message: 'Added to Favorites',
+        type: 'success',
+      } )
+    }
+    else{
+
+    setStarColor('grey')
+    changeColorPoint('red')
+    showMessage({
+      message: 'Removed from favorites',
+      type: 'danger',
+    } )
+    }
+  }
   return (
     <View
       style={{
@@ -34,7 +52,7 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
           size={30}
         />
       </TouchableOpacity>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', alignItems:'center'}}>
         <Image
           style={{height: 30, width: 30}}
           source={{
@@ -49,7 +67,8 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
             // width: 40,
             paddingHorizontal:3,
             borderRadius: 5,
-           paddingVertical:3
+           paddingVertical:1,
+           height:20,
           }}>
           <Text
             style={{
@@ -63,7 +82,7 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage}) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity onPress={()=>starColor=='grey'?setStarColor('gold'):setStarColor('grey')}>
+      <TouchableOpacity onPress={addToFav}>
         <Icon from={'fontAwesome'} name="star" color={starColor} size={25} />
       </TouchableOpacity>
     </View>

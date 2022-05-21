@@ -10,11 +10,10 @@ import {
 import React, {useState} from 'react';
 import DateBar from './dateBar';
 
-const Graph = () => {
+const Graph = ({PointColor}) => {
   const [day, setDay] = useState('24h');
   const setSelectedDay = data => {
     setDay(data);
-    console.log('from date bar', day);
     setGraphData(Random());
   };
   const Random = () => {
@@ -51,7 +50,7 @@ const Graph = () => {
           backgroundGradientFrom: '#424445',
           backgroundGradientTo: '#292828',
           decimalPlaces: 2, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          color: (opacity = 1) => PointColor||'red',
           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
           style: {
             borderRadius: 16,
@@ -59,7 +58,8 @@ const Graph = () => {
           propsForDots: {
             r: '6',
             strokeWidth: '2',
-            stroke: 'green',
+            stroke: PointColor||'red',
+
           },
         }}
         style={{

@@ -10,8 +10,8 @@ const CoinDetail = ({route}) => {
   const navigation=useNavigation()
   const {name, rank, thumbImage, coinID, changePercent, currentPrice, symbol} =
     route.params;
-  console.log(symbol);
   const [coinData, setCoinData] = useState({});
+  const [colorPoint, setColorPoint]=useState("")
   const fetchCoin = async () => {
     try {
       const data = await fetchCoinDetails(coinID);
@@ -21,6 +21,9 @@ const CoinDetail = ({route}) => {
       console.log(error);
     }
   };
+  const changeColorPoint=(color)=>{
+    setColorPoint(color)
+  }
   useEffect(() => {
     fetchCoin();
   }, []);
@@ -31,7 +34,8 @@ const CoinDetail = ({route}) => {
         coinName={symbol}
         rank={rank}
         thumbImage={thumbImage}
-      />
+        changeColorPoint={changeColorPoint}
+        />
       <ScrollView
         style={{
           backgroundColor: '#152029',
@@ -78,7 +82,7 @@ const CoinDetail = ({route}) => {
             </Text>
           </View>
         </View>
-        <Graph />
+        <Graph PointColor={colorPoint}/>
       </ScrollView>
     </SafeAreaView>
   );

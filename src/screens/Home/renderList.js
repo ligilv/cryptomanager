@@ -63,7 +63,7 @@ const RenderList = ({ item}, props) => {
                   color: 'white',
                   //   allowFontScaling: true,
                 }}>
-                {item.market_cap_rank}
+                #{item.market_cap_rank}
               </Text>
             </View>
             <View
