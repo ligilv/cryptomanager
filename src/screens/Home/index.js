@@ -13,7 +13,9 @@ import Icon from '../../components/Icon';
 import RenderList from './renderList';
 import Header from './Header';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 const Home = () => {
+  const state=useSelector((state)=>state)
   const navigation=useNavigation()
   const [data, setData] = useState({});
   const [refresh, setRefresh] = useState(false);
@@ -36,6 +38,7 @@ const Home = () => {
   useEffect(() => {
     getAllcoins();
     // navigation.navigate('');
+  console.log("state",state);
   }, []);
   return (
     <SafeAreaView  style={{flex: 1, backgroundColor: '#152029',}}>
