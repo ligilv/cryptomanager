@@ -24,10 +24,16 @@ import Home from './src/screens/Home';
 import RootNavigator from './src/navigation';
 import { storage } from './src/utils/mmkvStorage';
 const App = () => {
- 
+  const username = storage.getString('user.name')
+  console.log("check",username); 
   return (
     <Provider store={store}>
     <NavigationContainer>
+    <StatusBar
+            translucent={true}
+            backgroundColor="transparent"
+            barStyle={'default'}
+          />
     <RootNavigator />
     <FlashMessage position="top" /> 
     </NavigationContainer>

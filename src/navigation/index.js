@@ -57,11 +57,11 @@ const RootNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="LoginStack"
+      initialRouteName={username==""?"LoginStack":"HomeNav"}
       screenOptions={{
         headerShown: false,
       }}>
-      {username==""?<Stack.Screen name="LoginStack" component={AuthStack} />:null}
+      <Stack.Screen name="LoginStack" component={AuthStack} />
       <Stack.Screen name="HomeNav" component={Tabnavigator} />
     </Stack.Navigator>
   );

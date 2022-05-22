@@ -5,8 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 const Favorites = () => {
   const navigation=useNavigation()
   const logout=()=>{
-    storage.set('user.name', "")
     navigation.replace('LoginStack')
+    storage.set('user.name', "")
+    const username = storage.getString('user.name')
+    console.log("check",username);
   }
   return (
     <SafeAreaView>
