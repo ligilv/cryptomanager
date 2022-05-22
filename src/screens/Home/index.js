@@ -14,6 +14,7 @@ import RenderList from './renderList';
 import Header from './Header';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { storage } from '../../utils/mmkvStorage';
 const Home = () => {
   const state=useSelector((state)=>state)
   const navigation=useNavigation()
@@ -40,20 +41,21 @@ const Home = () => {
     // navigation.navigate('');
   console.log("state",state);
   }, []);
+  const username = storage.getString('user.name') 
   return (
     <SafeAreaView  style={{flex: 1, backgroundColor: '#152029',}}>
       <View style={{backgroundColor: '#1B1A17', flex:1}}>
-        <Header />
-        <FlatList
-          onRefresh={getAllcoins}
-          refreshing={refresh}
-          data={data}
-          // onRefresh={() => console.log('refre')}
-          keyExtractor={item => item.market_cap_rank}
-          renderItem={({item}) => { 
-            return <RenderList item={item}/>;
-          }}
-        />
+      <Header />
+      <FlatList
+      onRefresh={getAllcoins}
+      refreshing={refresh}
+      data={data}
+      // onRefresh={() => console.log('refre')}
+      keyExtractor={item => item.market_cap_rank}
+      renderItem={({item}) => { 
+        return <RenderList item={item}/>;
+      }}
+      />
       </View>
     </SafeAreaView>
   );

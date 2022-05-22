@@ -6,7 +6,10 @@ import FavoriteStack from './FavoriteStack';
 import Icon from '../components/Icon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AuthStack from './AuthStack';
+import { storage } from '../utils/mmkvStorage';
 const RootNavigator = () => {
+  const username = storage.getString('user.name') 
+
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   const Tabnavigator = () => {
@@ -54,11 +57,11 @@ const RootNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="AuthStack"
+      initialRouteName="LoginStack"
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Login" component={AuthStack} />
+      {username==""?<Stack.Screen name="LoginStack" component={AuthStack} />:null}
       <Stack.Screen name="HomeNav" component={Tabnavigator} />
     </Stack.Navigator>
   );

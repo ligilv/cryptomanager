@@ -5,6 +5,7 @@ const CustomInput = ({style, ...rest}) => {
   return (
     <View style={{padding: 20}}>
       <TextInput
+      
         style={[{
           backgroundColor: 'white',
           borderRadius: 10,

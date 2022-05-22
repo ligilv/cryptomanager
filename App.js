@@ -7,7 +7,7 @@
  */
 
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import FlashMessage from 'react-native-flash-message';
 import { store } from './src/redux/store';
 import { Provider } from 'react-redux';
@@ -22,7 +22,9 @@ import {
 } from 'react-native';
 import Home from './src/screens/Home';
 import RootNavigator from './src/navigation';
+import { storage } from './src/utils/mmkvStorage';
 const App = () => {
+ 
   return (
     <Provider store={store}>
     <NavigationContainer>
