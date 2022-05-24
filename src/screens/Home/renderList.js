@@ -1,26 +1,13 @@
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import Icon from '../../components/Icon';
-import { useNavigation } from '@react-navigation/native';
-const RenderList = ({ item}, props) => {
-  const navigation=useNavigation()
+import {useNavigation} from '@react-navigation/native';
+const RenderList = ({item}, props) => {
+  const navigation = useNavigation();
   return (
-    <View
-      style={{
-        marginBottom: 10,
-
-        padding: 10,
-      }}>
+    <View style={styles.container}>
       <TouchableOpacity
-        style={{
-          flexDirection: 'row',
-          borderColor: 'white',
-          borderWidth: 1,
-          backgroundColor: '#192630',
-          borderRadius: 15,
-          flex: 1,
-          padding: 20,
-        }}
+        style={styles.card}
         onPress={() =>
           navigation.navigate('CoinDetail', {
             name: item.name,
@@ -33,12 +20,12 @@ const RenderList = ({ item}, props) => {
           })
         }>
         <Image
-          style={{height: 50, width: 50}}
+          style={styles.image}
           source={{
             uri: item.image,
           }}
         />
-        <View style={{flexDirection: 'column', marginLeft: 20}}>
+        <View style={styles.firstRow}>
           {/* it will have name, rank and shortname, drop percentage */}
           <Text style={[styles.textStyle]}>
             {item.name.length > 15
@@ -47,24 +34,8 @@ const RenderList = ({ item}, props) => {
           </Text>
           {/* rank */}
           <View style={{flexDirection: 'row'}}>
-            <View
-              style={{
-                backgroundColor: 'grey',
-                marginTop: 5,
-                // width: 30,
-                borderRadius: 5,
-                  paddingHorizontal: 5,
-              }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: '600',
-                  textAlign: 'center',
-                  color: 'white',
-                  //   allowFontScaling: true,
-                }}>
-                #{item.market_cap_rank}
-              </Text>
+            <View style={styles.rankView}>
+              <Text style={styles.rankText}>#{item.market_cap_rank}</Text>
             </View>
             <View
               style={{
@@ -97,12 +68,9 @@ const RenderList = ({ item}, props) => {
         <View style={{flex: 1, alignItems: 'flex-end'}}>
           <Text style={{color: 'white', fontSize: 18}}>
             $
-            {
-              item.current_price.toLocaleString('en-US', {
-                maximumFractionDigits: 2,
-              })
-              // item.current_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-            }
+            {item.current_price.toLocaleString('en-US', {
+              maximumFractionDigits: 2,
+            })}
           </Text>
           <Text
             style={{
@@ -122,8 +90,38 @@ const RenderList = ({ item}, props) => {
 
 export default RenderList;
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 10,
+    padding: 10,
+  },
   textStyle: {
     color: 'white',
     fontSize: 22,
+  },
+  card: {
+    flexDirection: 'row',
+    borderColor: 'white',
+    borderWidth: 1,
+    backgroundColor: '#192630',
+    borderRadius: 15,
+    flex: 1,
+    padding: 20,
+  },
+  image: {
+    height: 50,
+    width: 50,
+  },
+  firstRow: {flexDirection: 'column', marginLeft: 20},
+  rankView: {
+    backgroundColor: 'grey',
+    marginTop: 5,
+    borderRadius: 5,
+    paddingHorizontal: 5,
+  },
+  rankText: {
+    fontSize: 15,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: 'white',
   },
 });

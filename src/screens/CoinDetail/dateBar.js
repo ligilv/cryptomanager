@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 
 const DateBar = ({selectFun}) => {
@@ -30,22 +30,10 @@ const DateBar = ({selectFun}) => {
         temp.push({value: duration[i].value, selected: false});
       }
       setDuration(temp);
-
-      // console.log('final', duration);
     }
   };
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        height: 50,
-        // backgroundColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 50,
-        // borderBottomColor: '#424445',
-        // borderWidth: 1,>
-      }}>
+    <View style={styles.container}>
       {duration.map(item => {
         return (
           <TouchableOpacity
@@ -67,3 +55,12 @@ const DateBar = ({selectFun}) => {
 };
 
 export default DateBar;
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 50,
+  },
+});

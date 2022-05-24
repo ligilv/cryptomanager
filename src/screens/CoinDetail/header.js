@@ -8,30 +8,51 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import Icon from '../../components/Icon';
-// import {} from 'react-native-gesture-handler';
-import {showMessage, hideMessage} from 'react-native-flash-message';
-const CustomHeader = ({route, navigation, coinName, rank, thumbImage, changeColorPoint}) => {
-  // const starColor=useRef('grey')
-  const [starColor, setStarColor]=useState('grey')
-  const addToFav=()=>{
-    if (  starColor=='grey') {
-      setStarColor('gold') 
-      changeColorPoint('green')
-      showMessage({
-        message: 'Added to Favorites',
-        type: 'success',
-      } )
-    }
-    else{
+import {useSelector, useDispatch} from 'react-redux';
 
-    setStarColor('grey')
-    changeColorPoint('red')
-    showMessage({
-      message: 'Removed from favorites',
-      type: 'danger',
-    } )
+import {showMessage, hideMessage} from 'react-native-flash-message';
+const CustomHeader = ({
+  route,
+  navigation,
+  coinName,
+  rank,
+  thumbImage,
+  changeColorPoint,
+  coinId,
+}) => {
+  const list = useSelector(state => state.favorites.favoriteCoin);
+  useEffect(() => {
+    let a = list.indexOf(coinId);
+    console.log(coinId);
+    if (a == 0) {
+      setStarColor('gold');
+      changeColorPoint('green');
+    } else {
+      setStarColor('grey');
+      changeColorPoint('red');
     }
-  }
+  }, [coinId]);
+  console.log('coinlist', list);
+  const dispatch = useDispatch();
+  // const starColor=useRef('grey')
+  const [starColor, setStarColor] = useState('grey');
+  const addToFav = () => {
+    // if (starColor == 'grey') {
+    //   setStarColor('gold');
+    //   changeColorPoint('green');
+    //   showMessage({
+    //     message: 'Added to Favorites',
+    //     type: 'success',
+    //   });
+    // } else {
+    //   setStarColor('grey');
+    //   changeColorPoint('red');
+    //   showMessage({
+    //     message: 'Removed from favorites',
+    //     type: 'danger',
+    //   });
+    // }
+  };
   return (
     <View
       style={{
@@ -52,7 +73,7 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage, changeColo
           size={30}
         />
       </TouchableOpacity>
-      <View style={{flexDirection: 'row', alignItems:'center'}}>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <Image
           style={{height: 30, width: 30}}
           source={{
@@ -65,10 +86,10 @@ const CustomHeader = ({route, navigation, coinName, rank, thumbImage, changeColo
             backgroundColor: 'grey',
             // marginTop: 5,
             // width: 40,
-            paddingHorizontal:3,
+            paddingHorizontal: 3,
             borderRadius: 5,
-           paddingVertical:1,
-           height:20,
+            paddingVertical: 1,
+            height: 20,
           }}>
           <Text
             style={{
