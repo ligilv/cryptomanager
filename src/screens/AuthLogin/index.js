@@ -44,6 +44,7 @@ const AuthLogin = () => {
           <Text style={styles.title}>$CRYPTO$</Text>
           <CustomInput
             placeholderTextColor={'#152029'}
+            // autoCapitalize={'characters'}
             value={username}
             placeholder="Username"
             onChangeText={value => setUsername(value)}

@@ -9,7 +9,7 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import Icon from '../../components/Icon';
 import {useSelector, useDispatch} from 'react-redux';
-
+import {addtofav} from '../../redux/actions/FavoritesActionCreator';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 const CustomHeader = ({
   route,
@@ -20,20 +20,35 @@ const CustomHeader = ({
   changeColorPoint,
   coinId,
 }) => {
-  const list = useSelector(state => state.favorites.favoriteCoin);
+  const dispatch = useDispatch();
+  const list = useSelector(state => state.favorites);
+  const [isStarred, setStarred] = useState(false);
   useEffect(() => {
-    let a = list.indexOf(coinId);
-    console.log(coinId);
-    if (a == 0) {
-      setStarColor('gold');
-      changeColorPoint('green');
-    } else {
-      setStarColor('grey');
-      changeColorPoint('red');
+    console.log('TYPE', typeof list);
+    console.log('Length', list.length);
+    if (list.length !== 0) {
+      for (i of list) {
+        if (i.name == coinId) {
+          console.log('found', i.name, coinId);
+          setStarColor('gold');
+
+          setStarred(true);
+        }
+        // console.log('fromm for', i.name);
+      }
     }
+
+    console.log(coinId);
+    // if (a == 0) {
+    //   setStarColor('gold');
+    //   changeColorPoint('green');
+    // } else {
+    //   setStarColor('grey');
+    //   changeColorPoint('red');
+    // }
   }, [coinId]);
   console.log('coinlist', list);
-  const dispatch = useDispatch();
+
   // const starColor=useRef('grey')
   const [starColor, setStarColor] = useState('grey');
   const addToFav = () => {
@@ -52,6 +67,7 @@ const CustomHeader = ({
     //     type: 'danger',
     //   });
     // }
+    dispatch(addtofav({name: coinId}));
   };
   return (
     <View
