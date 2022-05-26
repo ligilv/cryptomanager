@@ -15,6 +15,8 @@ const Favorites = () => {
     console.log('check', username);
   };
   const {count, addCount, resetTo} = TestHook();
+  const list = useSelector(state => state.favorites);
+  console.log('list', list);
   useEffect(() => {
     console.log(state);
   }, [state]);
@@ -44,6 +46,9 @@ const Favorites = () => {
           <Text style={{textAlign: 'center', fontSize: 100}}>{count}</Text>
         </View>
       </View>
+      {list.map(item => {
+        return <Text>{item.name}</Text>;
+      })}
     </SafeAreaView>
   );
 };
