@@ -9,8 +9,10 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState, useRef} from 'react';
 import FlashMessage from 'react-native-flash-message';
-import {store} from './src/redux/store';
+import {store, persistor} from './src/redux/store';
 import {Provider} from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
+
 import {
   SafeAreaView,
   ScrollView,
@@ -48,6 +50,8 @@ const App = () => {
   }, []);
   return (
     <Provider store={store}>
+         <PersistGate loading={null} persistor={persistor}>
+
       <StatusBar
         translucent={false}
         // backgroundColor="transparent"
@@ -57,6 +61,7 @@ const App = () => {
         <RootNavigator style={{paddingTop: 20}} />
         <FlashMessage position="top" />
       </NavigationContainer>
+         </PersistGate>
     </Provider>
   );
 };
