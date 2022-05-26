@@ -28,51 +28,22 @@ const CustomHeader = ({
       for (i of list) {
         if (i.name == coinId) {
           console.log('found', i.name, coinId);
-          setStarColor('gold');
 
           setStarred(true);
         } else {
           setStarred(false);
-          setStarColor('grey');
         }
       }
     }
-
-    // if (a == 0) {
-    //   setStarColor('gold');
-    //   changeColorPoint('green');
-    // } else {
-    //   setStarColor('grey');
-    //   changeColorPoint('red');
-    // }
   }, [list]);
 
-  // const starColor=useRef('grey')
-  const [starColor, setStarColor] = useState('grey');
   const addToFav = () => {
-    // if (starColor == 'grey') {
-    //   setStarColor('gold');
-    //   changeColorPoint('green');
-    //   showMessage({
-    //     message: 'Added to Favorites',
-    //     type: 'success',
-    //   });
-    // } else {
-    //   setStarColor('grey');
-    //   changeColorPoint('red');
-    //   showMessage({
-    //     message: 'Removed from favorites',
-    //     type: 'danger',
-    //   });
-    // }
     if (isStarred) {
-      dispatch(remFromFav({name: coinId}));
       setStarred(false);
-      setStarColor('grey');
+      dispatch(remFromFav({name: coinId}));
     } else {
-      dispatch(addtofav({name: coinId}));
       setStarred(true);
-      setStarColor('gold');
+      dispatch(addtofav({name: coinId}));
     }
   };
   return (
@@ -84,8 +55,6 @@ const CustomHeader = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 15,
-        // borderBottomColor: '#424445',
-        // borderWidth: 1,
       }}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon
@@ -106,8 +75,7 @@ const CustomHeader = ({
         <View
           style={{
             backgroundColor: 'grey',
-            // marginTop: 5,
-            // width: 40,
+
             paddingHorizontal: 3,
             borderRadius: 5,
             paddingVertical: 1,
@@ -119,14 +87,18 @@ const CustomHeader = ({
               fontWeight: '400',
               textAlign: 'center',
               color: 'white',
-              //   allowFontScaling: true,
             }}>
             #{rank}
           </Text>
         </View>
       </View>
       <TouchableOpacity onPress={addToFav}>
-        <Icon from={'fontAwesome'} name="star" color={starColor} size={25} />
+        <Icon
+          from={'fontAwesome'}
+          name="star"
+          color={isStarred ? 'gold' : 'grey'}
+          size={25}
+        />
       </TouchableOpacity>
     </View>
   );

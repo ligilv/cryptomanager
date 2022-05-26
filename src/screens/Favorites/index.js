@@ -46,8 +46,8 @@ const Favorites = () => {
           <Text style={{textAlign: 'center', fontSize: 100}}>{count}</Text>
         </View>
       </View>
-      {list.map(item => {
-        return <Text>{item.name}</Text>;
+      {list.map((item, i) => {
+        return <Text key={i}>{item.name}</Text>;
       })}
     </SafeAreaView>
   );

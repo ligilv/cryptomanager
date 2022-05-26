@@ -55,6 +55,7 @@ const CoinDetail = ({route}) => {
         thumbImage={thumbImage}
         changeColorPoint={changeColorPoint}
         coinId={coinID}
+        name={name}
       />
       {loading ? (
         <View style={styles.loaderStyle}>

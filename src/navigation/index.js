@@ -7,15 +7,18 @@ import Icon from '../components/Icon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AuthStack from './AuthStack';
 import {storage} from '../utils/mmkvStorage';
+import {useSelector} from 'react-redux';
 const RootNavigator = () => {
   const username = storage.getString('user.name');
 
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   const Tabnavigator = () => {
+    const favCount = useSelector(state => state.favorites);
+
     return (
       <Tab.Navigator
-        initialRouteName="FavoriteStack"
+        initialRouteName="Hometab"
         screenOptions={{
           tabBarShowLabel: false,
           headerShown: false,
@@ -29,7 +32,7 @@ const RootNavigator = () => {
           name="Hometab"
           component={HomeStack}
           options={{
-            tabBarBadge: 1,
+            // tabBarBadge: 1,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon
@@ -46,7 +49,7 @@ const RootNavigator = () => {
           name="FavoriteStack"
           component={FavoriteStack}
           options={{
-            tabBarBadge: 1,
+            tabBarBadge: favCount.length,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon
