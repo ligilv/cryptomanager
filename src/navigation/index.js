@@ -49,7 +49,7 @@ const RootNavigator = () => {
           name="FavoriteStack"
           component={FavoriteStack}
           options={{
-            tabBarBadge: favCount.length,
+            tabBarBadge: favCount.length == 0 ? null : favCount.length,
             tabBarIcon: ({focused}) => {
               return (
                 <Icon
